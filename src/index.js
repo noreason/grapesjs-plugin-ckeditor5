@@ -26,6 +26,10 @@ export default grapesjs.plugins.add('gjs-plugin-ckeditor5', (editor, opts = {}) 
 
   editor.setCustomRte({
       enable: async (el, rte) => {
+        if (rte) {
+          rte.destroy();
+        }
+
         el.contentEditable = true;
 
         // Hide other toolbars
