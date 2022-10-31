@@ -37,14 +37,9 @@ export default grapesjs.plugins.add('gjs-plugin-ckeditor5', (editor, opts = {}) 
         });
 
         // Init CkEditors
-        rte = await InlineEditor.create(el);
+        console.log(opts);
+        rte = await InlineEditor.create(el, opts.options);
         rte.getContent = rte.getData;
-
-        // Prevent blur when some of CKEditor's element is clicked
-        rte.on('mousedown', e => {
-          const editorEls = grapesjs.$('.gjs-rte-toolbar');
-          ['off', 'on'].forEach(m => editorEls[m]('mousedown', stopPropagation));
-        });
 
         // Append the editor
         editor.RichTextEditor.getToolbarEl().appendChild(rte.ui.view.toolbar.element);
