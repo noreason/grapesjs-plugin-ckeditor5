@@ -30,8 +30,6 @@ export default grapesjs.plugins.add('gjs-plugin-ckeditor5', (editor, opts = {}) 
           rte.destroy();
         }
 
-        el.contentEditable = true;
-
         // Hide other toolbars
         let rteToolbar = editor.RichTextEditor.getToolbarEl();
         [].forEach.call(rteToolbar.children, (child) => {
@@ -48,6 +46,7 @@ export default grapesjs.plugins.add('gjs-plugin-ckeditor5', (editor, opts = {}) 
           ['off', 'on'].forEach(m => editorEls[m]('mousedown', stopPropagation));
         });
 
+        // Append the editor
         editor.RichTextEditor.getToolbarEl().appendChild(rte.ui.view.toolbar.element);
         el.contentEditable = true;
 
@@ -56,7 +55,6 @@ export default grapesjs.plugins.add('gjs-plugin-ckeditor5', (editor, opts = {}) 
           return;
         }
 
-        el.contentEditable = true;
         rte && rte.editing.view.focus();
 
         return rte;
